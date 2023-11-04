@@ -47,6 +47,8 @@ group :development, :test do
   gem 'rubocop-hc', require: false, github: 'ihatov08/rubocop-hc'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'devise'
+  gem 'devise_token_auth'
 end
 
 group :development do
