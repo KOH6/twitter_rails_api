@@ -8,3 +8,22 @@ AllCops:
   NewCops: enable
 RSpec/MultipleExpectations:
   Max: 2
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - "db/migrate/*"
+Metrics/AbcSize:
+  Max: 32
+  Exclude:
+    - "db/migrate/*"
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/*.rb
+    - config/routes.rb
+Layout/LineLength:
+  Exclude:
+    - config/initializers/devise.rb
+    - db/migrate/*.rb
+Rails/ThreeStateBooleanColumn:
+  Exclude:
+    - db/migrate/*.rb

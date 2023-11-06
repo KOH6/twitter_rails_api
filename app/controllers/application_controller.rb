@@ -9,6 +9,7 @@ class ApplicationController < ActionController::API
 
   # ユーザ登録時にデフォルトカラム以外を許可
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation, :phone, :birthdate])
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: %i[name email password password_confirmation phone birthdate])
   end
 end
