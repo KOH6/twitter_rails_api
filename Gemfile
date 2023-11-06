@@ -49,6 +49,7 @@ group :development, :test do
   gem 'rubocop-rspec', require: false
   gem 'devise'
   gem 'devise_token_auth'
+  gem 'letter_opener_web'
 end
 
 group :development do
