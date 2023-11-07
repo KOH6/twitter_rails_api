@@ -43,6 +43,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'devise'
   gem 'devise_token_auth'
+  gem 'devise-i18n'
   gem 'factory_bot_rails'
   gem 'letter_opener_web'
   gem 'rspec-rails'

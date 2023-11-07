@@ -49,6 +49,10 @@ module Myapp
                  :methods => [:get, :post, :options, :delete, :put]
       end
     end
-    # ここまで
+
+    # タイムゾーンを日本に設定。デフォルトロケールを日本語に設定
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
+    config.i18n.default_locale = :ja
   end
 end
