@@ -44,6 +44,7 @@ group :development, :test do
   gem 'devise'
   gem 'devise_token_auth'
   gem 'devise-i18n'
+  gem 'devise-i18n-views'
   gem 'factory_bot_rails'
   gem 'letter_opener_web'
   gem 'rspec-rails'

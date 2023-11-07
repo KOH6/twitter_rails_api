@@ -94,6 +94,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.12.0)
       devise (>= 4.9.0)
+    devise-i18n-views (0.3.7)
     devise_token_auth (1.2.2)
       bcrypt (~> 3.0)
       devise (> 3.5.2, < 5)
@@ -266,6 +267,7 @@ DEPENDENCIES
   debug
   devise
   devise-i18n
+  devise-i18n-views
   devise_token_auth
   factory_bot_rails
   letter_opener_web
