@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'users', controllers: {
         # confirmationはUnsafe redirect toのエラー対応のため、変更を加えた同名自作メソッドを私用
-        confirmations: "api/v1/auth/confirmations",
+        confirmations: 'api/v1/auth/confirmations'
       }
     end
   end

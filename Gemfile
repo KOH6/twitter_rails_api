@@ -42,17 +42,17 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'devise'
-  gem 'devise_token_auth'
   gem 'devise-i18n'
   gem 'devise-i18n-views'
+  gem 'devise_token_auth'
   gem 'factory_bot_rails'
   gem 'letter_opener_web'
+  gem 'rack-cors'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-hc', require: false, github: 'ihatov08/rubocop-hc'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'rack-cors'
 end
 
 group :development do
