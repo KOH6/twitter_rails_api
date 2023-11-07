@@ -6,4 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   include DeviseTokenAuth::Concerns::User
+
+  with_options presence: true do
+    validates :phone
+    validates :birthdate
+    validates :name, uniqueness: true
+  end
 end
