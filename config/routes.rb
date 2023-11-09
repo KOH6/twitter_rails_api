@@ -1,9 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :tasks
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # 開発環境でブラウザ上でメール受信できるようにする
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :api do
+    namespace :v1 do
+      mount_devise_token_auth_for 'User', at: 'users', controllers: {
+        # confirmationはUnsafe redirect toのエラー対応のため、変更を加えた同名自作メソッドを私用
+        confirmations: 'api/v1/auth/confirmations'
+      }
+    end
+  end
 end
