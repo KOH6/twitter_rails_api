@@ -6,10 +6,10 @@ module Api
       class SessionsController < ApplicationController
         def index
           if current_api_v1_user
-              render json: { data: current_api_v1_user }
+            render json: { data: current_api_v1_user }
           else
-              # status_code:204を返す
-              render status: :no_content
+            # status_code:204を返す
+            render status: :no_content
           end
         end
       end
