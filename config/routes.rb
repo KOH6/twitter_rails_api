@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       end
 
       post 'tweets', to: "posts#create"
-      post 'images', to: "posts#image_create"
+      post 'images', to: "posts#create_image"
     end
   end
 end
