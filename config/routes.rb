@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       namespace :auth do
         resources :sessions, only: %i[index]
       end
+
+      post 'tweets', to: 'posts#create'
+      post 'images', to: 'posts#attach_image'
     end
   end
 end

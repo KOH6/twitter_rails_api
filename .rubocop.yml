@@ -28,3 +28,6 @@ Layout/LineLength:
 Rails/ThreeStateBooleanColumn:
   Exclude:
     - db/migrate/*.rb
+Hc/RailsSpecificActionName:
+  Exclude:
+    - app/controllers/api/v1/posts_controller.rb

@@ -1,8 +1,30 @@
 # frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+
+User.destroy_all
+
+USER_COUNT = 5
+POST_COUNT = 50
+user_ids = []
+post_ids = []
+
+USER_COUNT.times do |n|
+  count = n + 1
+  user = User.new(
+    name: "ユーザ名#{count}",
+    email: "example#{count}@example.com",
+    password: "#{'a' * count}111111",
+    birthdate: '2000-01-01',
+    phone: '111122223333'
+  )
+  user.skip_confirmation!
+  user.save!
+  user_ids << user.id
+end
+
+POST_COUNT.times do |n|
+  post = Post.create!(
+    user_id: user_ids.sample,
+    content: "テスト投稿#{n}です。\nテスト投稿#{n}です。\nテスト投稿#{n}です。"
+  )
+  post_ids << post.id
+end
