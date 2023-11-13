@@ -19,12 +19,12 @@ module Api
         end
 
         # 画像URLを追記してdataとして返す
-        data = posts.map { |post|
+        data = posts.map do |post|
           image_paths = post.images.map { |image| url_for(image) }
           post.as_json.merge(image_paths:)
-        }
+        end
 
-        render json:{data: , prev_offset:, next_offset:}
+        render json: { data:, prev_offset:, next_offset: }
       end
 
       def create
