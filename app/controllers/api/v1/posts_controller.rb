@@ -32,7 +32,7 @@ module Api
           render json: data
         else
           # 該当idのpostがない場合、status_code:404で返す
-          render json: {message: "投稿が見つかりませんでした。"}, status: :not_found
+          render json: { message: '投稿が見つかりませんでした。' }, status: :not_found
         end
       end
 
@@ -88,7 +88,6 @@ module Api
         user = post.user
         post.as_json.merge(image_paths:, user:)
       end
-
     end
   end
 end
