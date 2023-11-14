@@ -3,6 +3,30 @@
 module Api
   module V1
     class PostsController < ApplicationController
+      def index
+        if params[:limit] && params[:offset]
+          limit = params[:limit].to_i
+          offset = params[:offset].to_i
+
+          posts = Post.order(created_at: :desc).limit(limit).offset(offset)
+          prev_offset = offset.zero? ? 0 : offset - limit
+          next_offset = offset + limit
+        else
+          # limit, offsetのquery parameterがない場合は全件を返す
+          posts = Post.all.order(created_at: :desc)
+          prev_offset = 0
+          next_offset = 0
+        end
+
+        # 画像URLを追記してdataとして返す
+        data = posts.map do |post|
+          image_paths = post.images.map { |image| url_for(image) }
+          post.as_json.merge(image_paths:)
+        end
+
+        render json: { data:, prev_offset:, next_offset: }
+      end
+
       def create
         post = Post.new(post_params)
         post.user = current_api_v1_user
