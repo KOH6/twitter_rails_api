@@ -21,10 +21,20 @@ module Api
         # 画像URLを追記してdataとして返す
         data = posts.map do |post|
           image_paths = post.images.map { |image| url_for(image) }
-          post.as_json.merge(image_paths:)
+          post.as_json.merge(image_paths:, user:)
         end
 
         render json: { data:, prev_offset:, next_offset: }
+      end
+
+      def show
+        post = Post.find_by(id: params[:id])
+        if post
+          render json: post
+        else
+          # 該当idのpostがない場合、status_code:404で返す
+          render json: {message: "投稿が見つかりませんでした。"}, status: :not_found
+        end
       end
 
       def create

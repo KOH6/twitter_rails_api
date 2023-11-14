@@ -16,11 +16,12 @@ Rails.application.routes.draw do
         resources :sessions, only: %i[index]
       end
 
-      # ポスト投稿
+      # Postsテーブル
       post 'tweets', to: 'posts#create'
       get 'tweets', to: 'posts#index'
+      get 'tweets/:id', to: 'posts#show'
 
-      # 画像登録
+      # Postsテーブルの画像登録
       post 'images', to: 'posts#attach_image'
     end
   end
