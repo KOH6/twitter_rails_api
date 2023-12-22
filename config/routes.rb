@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 
       # Postsテーブルの画像登録
       post 'images', to: 'posts#attach_image'
+
+      # Usersテーブル
+      get 'users/:id', to: 'users#show'
     end
   end
 end
