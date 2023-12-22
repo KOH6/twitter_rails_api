@@ -31,8 +31,8 @@ ja:
         introduction: 自己紹介
         place: 場所
         website: ウェブサイト
-        photo: プロフィール画像
-        header_photo: ヘッダー画像
+        image: プロフィール画像
+        header_image: ヘッダー画像
     models:
       user: ユーザー
   devise:
