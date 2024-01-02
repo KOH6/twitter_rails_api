@@ -47,7 +47,7 @@ module Api
         end
       end
 
-      def attach_image
+      def attach_images
         images = params.require(:images)
         # 画像がない状態で呼ばれた場合、status_code:204で返す
         render status: :no_content if images.empty?
