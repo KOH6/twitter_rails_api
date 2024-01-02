@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  # url_forのメソッドを使うためinclude
+  include Rails.application.routes.url_helpers
+
   before_save :attach_dummy_image
 
   # Include default devise modules. Others available are:
@@ -17,6 +20,13 @@ class User < ApplicationRecord
     validates :phone
     validates :birthdate
     validates :name, uniqueness: true
+  end
+
+  # 画像ファイルのパスを内包したjsonを返す
+  def image_merged_json
+    profile_image_path = profile_image.attached? ? url_for(profile_image) : ""
+    header_image_path = header_image.attached? ? url_for(header_image) : ""
+    self.as_json.merge(profile_image_path:, header_image_path:)
   end
 
   private

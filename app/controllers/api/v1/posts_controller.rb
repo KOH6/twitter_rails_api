@@ -85,7 +85,7 @@ module Api
 
       def merge_user_and_image_paths(post)
         image_paths = post.images.map { |image| url_for(image) }
-        user = post.user
+        user = post.user.image_merged_json
         post.as_json.merge(image_paths:, user:)
       end
     end
