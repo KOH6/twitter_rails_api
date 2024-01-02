@@ -21,8 +21,7 @@ module Api
       def merge_posts_and_image_path(user)
         profile_image_path = user.profile_image.attached? ? url_for(user.profile_image) : ""
         header_image_path = user.header_image.attached? ? url_for(user.header_image) : ""
-        tweets = user.posts
-        user.posts.each { |post|
+        tweets = user.posts.map { |post|
           image_paths = post.images.map { |image| url_for(image) }
           post.as_json.merge(image_paths:)
         }
