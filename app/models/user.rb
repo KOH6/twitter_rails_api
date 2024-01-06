@@ -20,6 +20,7 @@ class User < ApplicationRecord
     validates :phone
     validates :birthdate
     validates :name, uniqueness: true
+    validates :user_name, uniqueness: true
   end
 
   # 画像ファイルのパスを内包したjsonを返す
@@ -27,6 +28,15 @@ class User < ApplicationRecord
     profile_image_path = profile_image.attached? ? url_for(profile_image) : ""
     header_image_path = header_image.attached? ? url_for(header_image) : ""
     self.as_json.merge(profile_image_path:, header_image_path:)
+  end
+
+  # 画像ファイルのパスを内包したjsonを返す
+  def posts_and_image_merged_json
+    tweets = user.posts.map { |post|
+      image_paths = post.images.map { |image| url_for(image) }
+      post.as_json.merge(image_paths:)
+    }
+    self.image_merged_json.as_json.merge(tweets:)
   end
 
   private

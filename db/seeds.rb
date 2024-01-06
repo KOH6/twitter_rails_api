@@ -11,6 +11,7 @@ USER_COUNT.times do |n|
   count = n + 1
   user = User.new(
     name: "ユーザ名#{count}",
+    user_name: "#{count}#{('a'..'z').to_a.shuffle[0..7].join}",
     email: "example#{count}@example.com",
     password: "#{'a' * count}111111",
     birthdate: '2000-01-01',

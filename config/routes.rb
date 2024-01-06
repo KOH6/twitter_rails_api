@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       post 'images', to: 'posts#attach_images'
 
       # Usersテーブル
-      get 'users/:id', to: 'users#show'
+      get 'users/:user_name', to: 'users#show'
     end
   end
 end

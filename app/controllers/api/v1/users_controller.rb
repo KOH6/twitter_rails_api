@@ -5,7 +5,7 @@ module Api
     class UsersController < ApplicationController
 
       def show
-        user = User.find_by(id: params[:id])
+        user = User.find_by(user_name: params[:user_name])
 
         if user
           data = merge_posts_and_image_path(user)
