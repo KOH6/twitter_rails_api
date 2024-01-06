@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
   def merge_user_and_image_as_json
     image_paths = self.images.map { |image| url_for(image) }
-    user = self.user.image_merged_json
+    user = self.user.merge_image_as_json
     self.as_json.merge(image_paths:, user:)
   end
 end

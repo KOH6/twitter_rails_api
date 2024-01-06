@@ -8,7 +8,7 @@ module Api
         user = User.find_by(user_name: params[:user_name])
 
         if user
-          data = user.posts_and_image_merged_json
+          data = user.merge_posts_and_image_as_json
           render json: data
         else
           # 該当idのuserがない場合、status_code:404で返す
