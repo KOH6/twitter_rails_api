@@ -32,10 +32,7 @@ class User < ApplicationRecord
 
   # 投稿とプロフィール画像ファイルのパスを内包したjsonを返す
   def posts_and_image_merged_json
-    tweets = self.posts.map { |post|
-      image_paths = post.images.map { |image| url_for(image) }
-      post.as_json.merge(image_paths:)
-    }
+    tweets = self.posts.order(created_at: :desc).map(&:merge_user_and_image_as_json)
     self.image_merged_json.as_json.merge(tweets:)
   end
 

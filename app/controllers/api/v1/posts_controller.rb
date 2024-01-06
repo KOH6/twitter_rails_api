@@ -19,7 +19,7 @@ module Api
         end
 
         # 画像URLを追記してdataとして返す
-        data = posts.map { |post| merge_user_and_image_paths(post) }
+        data = posts.map(&:merge_user_and_image_as_json)
 
         render json: { data:, prev_offset:, next_offset: }
       end
@@ -28,7 +28,7 @@ module Api
         post = Post.find_by(id: params[:id])
 
         if post
-          data = merge_user_and_image_paths(post)
+          data = post.merge_user_and_image_as_json
           render json: data
         else
           # 該当idのpostがない場合、status_code:404で返す
@@ -81,12 +81,6 @@ module Api
 
       def post_params
         params.require(:post).permit(:content)
-      end
-
-      def merge_user_and_image_paths(post)
-        image_paths = post.images.map { |image| url_for(image) }
-        user = post.user.image_merged_json
-        post.as_json.merge(image_paths:, user:)
       end
     end
   end
