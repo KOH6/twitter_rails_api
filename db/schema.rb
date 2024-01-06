@@ -62,14 +62,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_11_140648) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name", null: false
+    t.string "name", limit: 50, null: false
     t.string "user_name", null: false
     t.string "email", null: false
     t.string "phone", null: false
     t.date "birthdate", null: false
-    t.text "introduction"
-    t.string "place"
-    t.string "website"
+    t.string "introduction", limit: 160
+    t.string "place", limit: 30
+    t.string "website", limit: 100
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
