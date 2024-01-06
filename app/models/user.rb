@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # url_forのメソッドを使うためinclude
-  include Rails.application.routes.url_helpers
-
   before_save :attach_dummy_image
 
   # Include default devise modules. Others available are:
