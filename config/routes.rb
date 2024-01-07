@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
       # Usersテーブル
       get 'users/:user_name', to: 'users#show'
+      post 'profile', to: 'users#update'
     end
   end
 end

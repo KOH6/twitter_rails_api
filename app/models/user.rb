@@ -16,9 +16,13 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :phone
     validates :birthdate
-    validates :name, uniqueness: true
+    validates :name, uniqueness: true,    length: { maximum: 50 }
     validates :user_name, uniqueness: true
   end
+
+  validates :introduction,    length: { maximum: 160 }
+  validates :place,    length: { maximum: 30 }
+  validates :website,    length: { maximum: 100 }
 
   # プロフィール画像ファイルのパスを内包したjsonを返す
   def merge_image_as_json
