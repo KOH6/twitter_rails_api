@@ -30,10 +30,14 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[7.0]
       # t.datetime :locked_at
 
       ## User Info
-      t.string :name, null: false
+      t.string :name, null: false, limit: 50
+      t.string :user_name, null: false
       t.string :email, null: false
       t.string :phone, null: false
       t.date :birthdate, null: false
+      t.string :introduction, limit: 160
+      t.string :place, limit: 30
+      t.string :website, limit: 100
 
       ## Tokens
       t.json :tokens
@@ -41,7 +45,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :users, :name, unique: true
+    add_index :users, :user_name, unique: true
     add_index :users, :email, unique: true
     add_index :users, %i[uid provider], unique: true
     add_index :users, :reset_password_token, unique: true

@@ -22,7 +22,11 @@ Rails.application.routes.draw do
       get 'tweets/:id', to: 'posts#show'
 
       # Postsテーブルの画像登録
-      post 'images', to: 'posts#attach_image'
+      post 'images', to: 'posts#attach_images'
+
+      # Usersテーブル
+      get 'users/:user_name', to: 'users#show'
+      post 'profile', to: 'users#update'
     end
   end
 end

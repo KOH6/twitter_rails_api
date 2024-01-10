@@ -11,10 +11,14 @@ USER_COUNT.times do |n|
   count = n + 1
   user = User.new(
     name: "ユーザ名#{count}",
+    user_name: "#{count}#{('a'..'z').to_a.sample(8).join}",
     email: "example#{count}@example.com",
     password: "#{'a' * count}111111",
     birthdate: '2000-01-01',
-    phone: '111122223333'
+    phone: '111122223333',
+    introduction: '自己紹介文です' * 20,
+    place: '東京都',
+    website: 'google.com'
   )
   user.skip_confirmation!
   user.save!
