@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       post 'tweets', to: 'posts#create'
       get 'tweets', to: 'posts#index'
       get 'tweets/:id', to: 'posts#show'
+      delete 'tweets/:id', to: 'posts#destroy'
 
       # Postsテーブルの画像登録
       post 'images', to: 'posts#attach_images'
