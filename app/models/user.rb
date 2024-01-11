@@ -33,10 +33,11 @@ class User < ApplicationRecord
     as_json.merge(profile_image_path:, header_image_path:)
   end
 
-  # 投稿とプロフィール画像ファイルのパスを内包したjsonを返す
-  def merge_posts_and_image_as_json
+  # 子レコードとプロフィール画像ファイルのパスを内包したjsonを返す
+  def merge_children_and_image_as_json
     tweets = posts.order(created_at: :desc).map(&:merge_user_and_image_as_json)
-    merge_image_as_json.as_json.merge(tweets:)
+    comments = self.comments.order(created_at: :desc).map(&:merge_user_as_json)
+    merge_image_as_json.as_json.merge(tweets:, comments:)
   end
 
   private

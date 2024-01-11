@@ -7,7 +7,7 @@ module Api
         user = User.find_by(user_name: params[:user_name])
 
         if user
-          data = user.merge_posts_and_image_as_json
+          data = user.merge_children_and_image_as_json
           render json: data
         else
           # 該当idのuserがない場合、status_code:404で返す
@@ -20,7 +20,7 @@ module Api
         user.attributes = user_params
 
         if user.save
-          data = user.merge_posts_and_image_as_json
+          data = user.merge_children_and_image_as_json
           render json: data
         else
           # 更新に失敗した場合、status_code:422で返す
