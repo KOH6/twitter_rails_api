@@ -17,6 +17,6 @@ class Post < ApplicationRecord
 
   def merge_comments_as_json
     comments = self.comments.order(created_at: :desc).map(&:merge_user_as_json)
-    as_json.merge(comments:)
+    merge_user_and_image_as_json.as_json.merge(comments:)
   end
 end
