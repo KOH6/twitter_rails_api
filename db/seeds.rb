@@ -32,6 +32,10 @@ POST_COUNT.times do |n|
   )
   post_ids << post.id
 
+  Repost.create!(
+    user_id: user_ids.reject { |id| id == post.user_id }.sample,
+    post_id: post.id
+  )
   rand(0..10).times do |m|
     Comment.create!(
       user_id: user_ids.reject { |id| id == post.user_id }.sample,
