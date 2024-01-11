@@ -37,6 +37,10 @@ Rails.application.routes.draw do
       # Repostsテーブル
       post 'tweets/:tweet_id/retweets', to: 'reposts#create'
       delete 'tweets/:tweet_id/retweets', to: 'reposts#destroy'
+
+      # Likesテーブル
+      post 'tweets/:tweet_id/favorites', to: 'likes#create'
+      delete 'tweets/:tweet_id/favorites', to: 'likes#destroy'
     end
   end
 end

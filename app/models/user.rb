@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :reposts, dependent: :destroy
   has_many :reposting_posts, through: :reposts, source: :post
 
+  has_many :likes, dependent: :destroy
+  has_many :liking_posts, through: :likes, source: :post
+
   with_options presence: true do
     validates :phone
     validates :birthdate
@@ -41,7 +44,8 @@ class User < ApplicationRecord
     tweets = posts.order(created_at: :desc).map(&:merge_user_and_image_as_json)
     comments = self.comments.order(created_at: :desc).map(&:merge_user_as_json)
     retweets = reposting_posts.order(created_at: :desc).map(&:merge_user_and_image_as_json)
-    merge_image_as_json.as_json.merge(tweets:, comments:, retweets:)
+    likes = liking_posts.order(created_at: :desc).map(&:merge_user_and_image_as_json)
+    merge_image_as_json.as_json.merge(tweets:, comments:, retweets:, likes:)
   end
 
   private
