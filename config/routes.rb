@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
       # Commentsテーブル
       post 'comments', to: 'comments#create'
+      get 'tweets/:tweet_id/comments', to: 'comments#index'
     end
   end
 end
