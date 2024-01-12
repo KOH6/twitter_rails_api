@@ -2,15 +2,15 @@
 
 User.destroy_all
 
-USER_COUNT = 5
-POST_COUNT = 50
+USER_COUNT = 10
+POST_COUNT = 100
 user_ids = []
 post_ids = []
 
 USER_COUNT.times do |n|
   count = n + 1
   user = User.new(
-    name: "ユーザ名#{count}",
+    name: "ユーザ名#{count}#{('a'..'z').to_a.sample(8).join}",
     user_name: "#{count}#{('a'..'z').to_a.sample(8).join}",
     email: "example#{count}@example.com",
     password: "#{'a' * count}111111",
@@ -40,11 +40,16 @@ POST_COUNT.times do |n|
     user_id: user_ids.reject { |id| id == post.user_id }.sample,
     post_id: post.id
   )
-  rand(0..10).times do |m|
+  rand(0..15).times do |m|
     Comment.create!(
       user_id: user_ids.reject { |id| id == post.user_id }.sample,
       post_id: post.id,
       content: "#{post.user.name}さん、投稿#{n}に対するコメント#{m}です"
     )
   end
+end
+
+user_ids.each do |user_id|
+  followee_ids = user_ids.reject { |id| id == user_id }.sample(rand(USER_COUNT - 1))
+  followee_ids.each { |followee_id| Follow.create!(follower_id: user_id, followee_id:) }
 end

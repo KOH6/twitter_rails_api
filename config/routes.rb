@@ -41,6 +41,10 @@ Rails.application.routes.draw do
       # Likesテーブル
       post 'tweets/:tweet_id/favorites', to: 'likes#create'
       delete 'tweets/:tweet_id/favorites', to: 'likes#destroy'
+
+      # Followsテーブル
+      post 'users/:user_name/follows', to: 'follows#create'
+      delete 'users/:user_name/follows', to: 'follows#destroy'
     end
   end
 end
