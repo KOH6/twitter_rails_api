@@ -64,7 +64,7 @@ class User < ApplicationRecord
 
   def attach_dummy_image
     unless profile_image.attached?
-      profile_image.attach(io: Rails.root.join('app/assets/images/dummy_image.jpg').open,
+      profile_image.attach(io: Rails.root.join("app/assets/images/dummy_image_#{rand(4)}.jpg").open,
                            filename: 'dummy_image.jpg')
     end
 
