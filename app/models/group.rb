@@ -1,6 +1,6 @@
 class Group < ApplicationRecord
   has_many :group_members, dependent: :destroy
-  # has_many :messages, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   def self.search_existing_group(user_id:, other_id:)
     existing_group = nil
