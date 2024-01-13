@@ -31,4 +31,12 @@ POST_COUNT.times do |n|
     content: "テスト投稿#{n}です。\nテスト投稿#{n}です。\nテスト投稿#{n}です。"
   )
   post_ids << post.id
+
+  rand(0..10).times do |m|
+    Comment.create!(
+      user_id: user_ids.reject { |id| id == post.user_id }.sample,
+      post_id: post.id,
+      content: "#{post.user.name}さん、投稿#{n}に対するコメント#{m}です"
+    )
+  end
 end
