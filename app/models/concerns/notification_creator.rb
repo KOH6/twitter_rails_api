@@ -5,10 +5,10 @@ module NotificationCreator
     # Followsテーブルだけ構造が違うので、userに設定するリレーションを変更する
     user =
       case self.class.name
-        when 'Follow' then followee
-        else  post.user
+      when 'Follow' then followee
+      else post.user
       end
 
-    notification = Notification.create!(user:, action: self, action_type: self.class.name)
+    Notification.create!(user:, action: self, action_type: self.class.name)
   end
 end

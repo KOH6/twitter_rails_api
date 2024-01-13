@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Notification < ApplicationRecord
   belongs_to :user
   belongs_to :action, polymorphic: true
@@ -15,7 +17,6 @@ class Notification < ApplicationRecord
     case action_type
     when 'Follow' then action.followee
     when 'Comment' then action.merge_user_as_json
-    when 'Like' then action.post
     else action.post
     end
   end
