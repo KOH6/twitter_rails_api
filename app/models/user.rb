@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   has_many :reposts, dependent: :destroy
   has_many :reposting_posts, through: :reposts, source: :post

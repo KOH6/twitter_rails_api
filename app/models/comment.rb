@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class Comment < ApplicationRecord
+  include NotificationCreator
+
+  after_create :create_notification
+
   belongs_to :post
   belongs_to :user
+  has_one :notification, as: :action, dependent: :destroy
 
   validates :content, presence: true, length: { maximum: 140 }
 
