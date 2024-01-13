@@ -32,6 +32,10 @@ class User < ApplicationRecord
                              inverse_of: 'followee'
   has_many :followers, through: :followed_status, source: :follower
 
+  has_many :groups, through: :group_members
+  has_many :group_members, dependent: :destroy
+  # has_many :messages, dependent: :destroy
+
   with_options presence: true do
     validates :phone
     validates :birthdate
