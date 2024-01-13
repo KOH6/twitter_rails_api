@@ -3,13 +3,13 @@
 # ランダム文字列を取得
 # 平仮名と常用漢字
 def self.rand_jp_str(length = 20)
-  char = "あいうえおかきくけこさしすせそたちつてとはひふへほはひふへほやゆよつわあいうえおかきくけこさしすせそたちつてとはひふへほはひふへほやゆよつわ亜哀挨愛曖悪握圧扱宛嵐安案暗以衣".split(//)
-  return Array.new(length){char[rand(1..char.size)]}.join
+  char = 'あいうえおかきくけこさしすせそたちつてとはひふへほはひふへほやゆよつわあいうえおかきくけこさしすせそたちつてとはひふへほはひふへほやゆよつわ亜哀挨愛曖悪握圧扱宛嵐安案暗以衣'.chars
+  Array.new(length) { char[rand(1..char.size)] }.join
 end
 
 # アルファベット
 def self.rand_en_str(length = 5)
-  return ('a'..'z').to_a.sample(rand(1..length)).join
+  ('a'..'z').to_a.sample(rand(1..length)).join
 end
 
 User.destroy_all
@@ -65,4 +65,3 @@ user_ids.each do |user_id|
   followee_ids = user_ids.reject { |id| id == user_id }.sample(rand(USER_COUNT - 1))
   followee_ids.each { |followee_id| Follow.create!(follower_id: user_id, followee_id:) }
 end
-
