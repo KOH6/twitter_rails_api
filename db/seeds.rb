@@ -13,6 +13,7 @@ def self.rand_en_str(length = 5)
 end
 
 User.destroy_all
+Group.destroy_all
 
 USER_COUNT = 10
 POST_COUNT = 100
@@ -35,6 +36,28 @@ USER_COUNT.times do |n|
   user.skip_confirmation!
   user.save!
   user_ids << user.id
+end
+
+user_ids.each do |user_id|
+  other_ids = user_ids.reject { |id| id == user_id }.sample(rand(1...USER_COUNT-4))
+
+  other_ids.each do |other_id|
+    member_ids = [user_id, other_id]
+    existing_group = Group.search_existing_group(user_id:, other_id:)
+    if existing_group
+      group = existing_group
+    else
+      group = Group.create!
+      member_ids.each { |member_id| GroupMember.create!(user_id: member_id, group_id: group.id) }
+    end
+    rand(1..5).times do |n|
+      Message.create!(
+        user_id: member_ids.sample,
+        group_id: group.id,
+        content: (existing_group ? '既存部屋です。' : '') + "テストコメント#{n}です。\nテストコメント#{n}です。\nテストコメント#{n}です。"
+      )
+    end
+  end
 end
 
 POST_COUNT.times do |n|
