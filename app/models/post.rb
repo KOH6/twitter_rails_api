@@ -14,4 +14,9 @@ class Post < ApplicationRecord
     user = self.user.merge_image_as_json
     as_json.merge(image_paths:, user:, comment_count:)
   end
+
+  def merge_comments_as_json
+    comments = self.comments.order(created_at: :desc).map(&:merge_user_as_json)
+    merge_user_and_image_as_json.as_json.merge(comments:)
+  end
 end
