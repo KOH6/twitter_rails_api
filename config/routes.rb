@@ -33,6 +33,14 @@ Rails.application.routes.draw do
       post 'comments', to: 'comments#create'
       get 'tweets/:tweet_id/comments', to: 'comments#index'
       delete 'comments/:id', to: 'comments#destroy'
+
+      # Repostsテーブル
+      post 'tweets/:tweet_id/retweets', to: 'reposts#create'
+      delete 'tweets/:tweet_id/retweets', to: 'reposts#destroy'
+
+      # Likesテーブル
+      post 'tweets/:tweet_id/favorites', to: 'likes#create'
+      delete 'tweets/:tweet_id/favorites', to: 'likes#destroy'
     end
   end
 end
