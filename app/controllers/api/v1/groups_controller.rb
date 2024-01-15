@@ -5,10 +5,10 @@ module Api
     class GroupsController < ApplicationController
       def index
         current_user = current_api_v1_user
-        groups = current_user.groups.order(updated_at: :desc).map {|group|
+        groups = current_user.groups.order(updated_at: :desc).map do |group|
           user = group.user_as_json(current_user)
           group.as_json(methods: :latest_message).merge(user:)
-        }
+        end
         render json: groups
       end
 
@@ -25,7 +25,6 @@ module Api
 
         render json: group
       end
-
     end
   end
 end
