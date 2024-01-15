@@ -75,6 +75,10 @@ POST_COUNT.times do |n|
     user_id: user_ids.reject { |id| id == post.user_id }.sample,
     post_id: post.id
   )
+  Bookmark.create!(
+    user_id: user_ids.reject { |id| id == post.user_id }.sample,
+    post_id: post.id
+  )
   rand(0..15).times do |m|
     Comment.create!(
       user_id: user_ids.reject { |id| id == post.user_id }.sample,

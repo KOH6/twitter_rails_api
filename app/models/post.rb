@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :reposts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   validates :content, presence: true, length: { maximum: 140 }
 

@@ -22,6 +22,10 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liking_posts, through: :likes, source: :post
 
+  # 新たにブックマークした順に取得するためorderを明示的に指定する
+  has_many :bookmarks, -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :bookmarking_posts, through: :bookmarks, source: :post
+
   # 自分がフォローしているユーザたち
   has_many :following_status, class_name: 'Follow', foreign_key: :follower_id, dependent: :destroy,
                               inverse_of: 'follower'
