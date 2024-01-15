@@ -16,8 +16,9 @@ class Post < ApplicationRecord
     comment_count = comments.count
     retweet_count = reposts.count
     like_count = likes.count
+    bookmark_count = bookmarks.count
     user = self.user.merge_image_as_json
-    as_json.merge(image_paths:, user:, comment_count:, retweet_count:, like_count:)
+    as_json.merge(image_paths:, user:, comment_count:, retweet_count:, like_count:, bookmark_count:)
   end
 
   def merge_comments_as_json

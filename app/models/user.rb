@@ -65,9 +65,10 @@ class User < ApplicationRecord
     comments = self.comments.order(created_at: :desc).map(&:merge_user_as_json)
     retweets = reposting_posts.order(created_at: :desc).map(&:merge_user_and_image_as_json)
     likes = liking_posts.order(created_at: :desc).map(&:merge_user_and_image_as_json)
+    bookmarks = bookmarking_posts.map(&:merge_user_and_image_as_json)
     followees = self.followees
     followers = self.followers
-    merge_image_as_json.as_json.merge(tweets:, comments:, retweets:, likes:, followees:, followers:)
+    merge_image_as_json.as_json.merge(tweets:, comments:, retweets:, likes:, followees:, followers:, bookmarks:)
   end
 
   private
