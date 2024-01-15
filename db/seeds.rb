@@ -68,13 +68,13 @@ POST_COUNT.times do |n|
   post_ids << post.id
 
   liking_user_ids = user_ids.reject { |id| id == post.user.id }.sample(rand(USER_COUNT - 5))
-  liking_user_ids.each { |id| Like.create!(user_id: id,post_id: post.id) }
+  liking_user_ids.each { |id| Like.create!(user_id: id, post_id: post.id) }
 
   reposting_user_ids = user_ids.reject { |id| id == post.user.id }.sample(rand(USER_COUNT - 5))
-  reposting_user_ids.each { |id| Repost.create!(user_id: id,post_id: post.id) }
+  reposting_user_ids.each { |id| Repost.create!(user_id: id, post_id: post.id) }
 
   bookmarking_user_ids = user_ids.reject { |id| id == post.user.id }.sample(rand(USER_COUNT - 5))
-  bookmarking_user_ids.each { |id| Bookmark.create!(user_id: id,post_id: post.id) }
+  bookmarking_user_ids.each { |id| Bookmark.create!(user_id: id, post_id: post.id) }
 
   rand(0..15).times do |m|
     Comment.create!(
