@@ -10,7 +10,7 @@ module Api
       end
 
       def create
-        current_user = User.first
+        current_user = current_api_v1_user
         message = current_user.messages.build(message_params)
 
         if message.save!
