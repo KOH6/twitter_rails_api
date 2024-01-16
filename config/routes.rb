@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      # Usersテーブル
+      get 'users/:user_name', to: 'users#show'
+      post 'profile', to: 'users#update'
+
       mount_devise_token_auth_for 'User', at: 'users', controllers: {
         # confirmationはUnsafe redirect toのエラー対応のため、変更を加えた同名自作メソッドを使用
         confirmations: 'api/v1/auth/confirmations'
@@ -24,12 +28,8 @@ Rails.application.routes.draw do
 
       # Postsテーブルの画像登録
       post 'images', to: 'posts#attach_images'
-
-      # Usersテーブル
-      get 'users/:user_name', to: 'users#show'
-      post 'profile', to: 'users#update'
-
       # Commentsテーブル
+
       post 'comments', to: 'comments#create'
       get 'tweets/:tweet_id/comments', to: 'comments#index'
       delete 'comments/:id', to: 'comments#destroy'
