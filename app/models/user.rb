@@ -21,6 +21,16 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liking_posts, through: :likes, source: :post
 
+  # 自分がフォローしているユーザたち
+  has_many :following_status, class_name: 'Follow', foreign_key: :follower_id, dependent: :destroy,
+                              inverse_of: 'follower'
+  has_many :followees, through: :following_status, source: :followee
+
+  # 自分がフォローされているユーザたち
+  has_many :followed_status, class_name: 'Follow', foreign_key: :followee_id, dependent: :destroy,
+                             inverse_of: 'followee'
+  has_many :followers, through: :followed_status, source: :follower
+
   with_options presence: true do
     validates :phone
     validates :birthdate
@@ -45,14 +55,16 @@ class User < ApplicationRecord
     comments = self.comments.order(created_at: :desc).map(&:merge_user_as_json)
     retweets = reposting_posts.order(created_at: :desc).map(&:merge_user_and_image_as_json)
     likes = liking_posts.order(created_at: :desc).map(&:merge_user_and_image_as_json)
-    merge_image_as_json.as_json.merge(tweets:, comments:, retweets:, likes:)
+    followees = self.followees
+    followers = self.followers
+    merge_image_as_json.as_json.merge(tweets:, comments:, retweets:, likes:, followees:, followers:)
   end
 
   private
 
   def attach_dummy_image
     unless profile_image.attached?
-      profile_image.attach(io: Rails.root.join('app/assets/images/dummy_image.jpg').open,
+      profile_image.attach(io: Rails.root.join("app/assets/images/dummy_image_#{rand(4)}.jpg").open,
                            filename: 'dummy_image.jpg')
     end
 
