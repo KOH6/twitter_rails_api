@@ -45,6 +45,9 @@ Rails.application.routes.draw do
       # Followsテーブル
       post 'users/:user_name/follows', to: 'follows#create'
       delete 'users/:user_name/follows', to: 'follows#destroy'
+
+      # Noftificationsテーブル
+      get 'notifications', to: 'notifications#index'
     end
   end
 end
