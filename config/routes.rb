@@ -48,6 +48,12 @@ Rails.application.routes.draw do
 
       # Noftificationsテーブル
       get 'notifications', to: 'notifications#index'
+
+      # Groups, Messagesテーブル
+      get 'groups', to: 'groups#index'
+      post 'groups', to: 'groups#create'
+      get 'groups/:group_id/messages', to: 'messages#index'
+      post 'groups/:group_id/messages', to: 'messages#create'
     end
   end
 end
