@@ -88,6 +88,6 @@ class User < ApplicationRecord
 
   # user.destoryだけではUser側から適切にカスケード削除されないGroupsテーブルを前処理で削除
   def destroy_groups
-    Group.where(id: self.groups.map(&:id)).destroy_all
+    Group.where(id: groups.map(&:id)).destroy_all
   end
 end

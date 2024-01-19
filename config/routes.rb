@@ -28,8 +28,8 @@ Rails.application.routes.draw do
 
       # Postsテーブルの画像登録
       post 'images', to: 'posts#attach_images'
-      # Commentsテーブル
 
+      # Commentsテーブル
       post 'comments', to: 'comments#create'
       get 'tweets/:tweet_id/comments', to: 'comments#index'
       delete 'comments/:id', to: 'comments#destroy'
