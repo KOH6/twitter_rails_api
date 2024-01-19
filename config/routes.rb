@@ -54,6 +54,11 @@ Rails.application.routes.draw do
       post 'groups', to: 'groups#create'
       get 'groups/:group_id/messages', to: 'messages#index'
       post 'groups/:group_id/messages', to: 'messages#create'
+
+      # Bookmarksテーブル
+      get 'bookmarks', to: 'bookmarks#index'
+      post 'tweets/:tweet_id/bookmarks', to: 'bookmarks#create'
+      delete 'tweets/:tweet_id/bookmarks', to: 'bookmarks#destroy'
     end
   end
 end
