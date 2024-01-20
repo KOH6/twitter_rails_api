@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   before_save :attach_dummy_image
+  before_destroy :destroy_groups
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -83,5 +84,10 @@ class User < ApplicationRecord
 
     header_image.attach(io: Rails.root.join('app/assets/images/dummy_header_image.jpg').open,
                         filename: 'dummy_header_image.jpg')
+  end
+
+  # user.destoryだけではUser側から適切にカスケード削除されないGroupsテーブルを前処理で削除
+  def destroy_groups
+    Group.where(id: groups.map(&:id)).destroy_all
   end
 end
